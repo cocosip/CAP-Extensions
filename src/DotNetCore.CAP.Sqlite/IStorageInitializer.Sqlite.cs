@@ -50,31 +50,27 @@ namespace DotNetCore.CAP.Sqlite
 
         protected virtual string CreateDbTablesScript(string schema)
         {
-            var batchSql =
-               $@"
-CREATE TABLE IF NOT EXISTS `{GetReceivedTableName()}` (
-  `Id` bigint NOT NULL,
-  `Version` varchar(20) DEFAULT NULL COLLATE NOCASE,
-  `Name` varchar(400) NOT NULL COLLATE NOCASE,
-  `Group` varchar(200) DEFAULT NULL COLLATE NOCASE,
-  `Content` longtext,
-  `Retries` int(11) DEFAULT NULL,
-  `Added` datetime NOT NULL,
-  `ExpiresAt` datetime DEFAULT NULL,
-  `StatusName` varchar(50) NOT NULL COLLATE NOCASE,
-  PRIMARY KEY (`Id`)
-); 
-CREATE TABLE IF NOT EXISTS `{GetPublishedTableName()}` (
-  `Id` bigint NOT NULL,
-  `Version` varchar(20) DEFAULT NULL COLLATE NOCASE,
-  `Name` varchar(200) NOT NULL COLLATE NOCASE,
-  `Content` longtext,
-  `Retries` int(11) DEFAULT NULL,
-  `Added` datetime NOT NULL,
-  `ExpiresAt` datetime DEFAULT NULL,
-  `StatusName` varchar(40) NOT NULL COLLATE NOCASE,
-  PRIMARY KEY (`Id`)
-)";
+            var batchSql = $"CREATE TABLE IF NOT EXISTS `{GetReceivedTableName()}` (" +
+                $"`Id` bigint NOT NULL," +
+                $"`Version` varchar(20) DEFAULT NULL COLLATE NOCASE," +
+                $"`Name` varchar(400) NOT NULL COLLATE NOCASE," +
+                $"`Group` varchar(200) DEFAULT NULL COLLATE NOCASE," +
+                $"`Content` longtext," +
+                $"`Retries` int(11) DEFAULT NULL," +
+                $"`Added` datetime NOT NULL," +
+                $"`ExpiresAt` datetime DEFAULT NULL," +
+                $"`StatusName` varchar(50) NOT NULL COLLATE NOCASE," +
+                $"PRIMARY KEY (`Id`));  " +
+                $"CREATE TABLE IF NOT EXISTS `{GetPublishedTableName()}` (" +
+                $"`Id` bigint NOT NULL," +
+                $"`Version` varchar(20) DEFAULT NULL COLLATE NOCASE," +
+                $"`Name` varchar(200) NOT NULL COLLATE NOCASE," +
+                $"`Content` longtext," +
+                $"`Retries` int(11) DEFAULT NULL," +
+                $"`Added` datetime NOT NULL," +
+                $"`ExpiresAt` datetime DEFAULT NULL," +
+                $"`StatusName` varchar(40) NOT NULL COLLATE NOCASE," +
+                $"PRIMARY KEY (`Id`))";
             return batchSql;
         }
     }

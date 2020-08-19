@@ -10,7 +10,6 @@ using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DotNetCore.CAP.Sqlite
@@ -34,26 +33,10 @@ namespace DotNetCore.CAP.Sqlite
 
         public StatisticsDto GetStatistics()
         {
-            //var sql = $"PRAGMA read_uncommitted = 1; " +
-            //    $"SELECT COUNT(`Id`) FROM `{_pubName}` WHERE `StatusName` = 'Succeeded';" +
-            //    $"SELECT COUNT(`Id`) FROM `{_recName}` WHERE `StatusName` = 'Succeeded';" +
-            //    $"SELECT COUNT(`Id`) FROM `{_pubName}` WHERE `StatusName` = 'Failed';" +
-            //    $"SELECT COUNT(`Id`) FROM `{_recName}` WHERE `StatusName` = 'Failed';";
-
-            var sql = $@"
-SELECT
-(
-    SELECT COUNT(Id) FROM `{_pubName}` WHERE `StatusName` = 'Succeeded'
-) AS PublishedSucceeded,
-(
-    SELECT COUNT(Id) FROM `{_recName}` WHERE `StatusName` = 'Succeeded'
-) AS ReceivedSucceeded,
-(
-    SELECT COUNT(Id) FROM `{_pubName}` WHERE `StatusName` = 'Failed'
-) AS PublishedFailed,
-(
-    SELECT COUNT(Id) FROM `{_recName}` WHERE `StatusName` = 'Failed'
-) AS ReceivedFailed;";
+            var sql = $"SELECT (SELECT COUNT(Id) FROM `{_pubName}` WHERE `StatusName` = 'Succeeded') AS PublishedSucceeded," +
+                $" (SELECT COUNT(Id) FROM `{_recName}` WHERE `StatusName` = 'Succeeded') AS ReceivedSucceeded," +
+                $" (SELECT COUNT(Id) FROM `{_pubName}` WHERE `StatusName` = 'Failed') AS PublishedFailed," +
+                $" (SELECT COUNT(Id) FROM `{_recName}` WHERE `StatusName` = 'Failed') AS ReceivedFailed;";
             StatisticsDto statistics;
             using (var connection = new SqliteConnection(_options.ConnectionString))
             {
@@ -198,14 +181,10 @@ SELECT
             string statusName,
             IDictionary<string, DateTime> keyMaps)
         {
-            var sqlQuery = $@"
-        SELECT aggr.* from (
-            select strftime('%Y-%m-%d-%H', `Added`) as Key,
-                count(`id`) as Count
-            from  `{tableName}`
-            where `StatusName` = @statusName
-            group by strftime('%Y-%m-%d-%H', `Added`)
-        ) as aggr where aggr.`Key`>=@minKey AND `Key`<=@maxKey;";
+            var sqlQuery = $"SELECT aggr.* FROM " +
+                $"(SELECT strftime('%Y-%m-%d-%H', `Added`) AS Key, COUNT(`Id`) AS Count FROM `{tableName}` " +
+                $"WHERE `StatusName` = @statusName GROUP BY strftime('%Y-%m-%d-%H', `Added`) ) " +
+                $"AS aggr WHERE aggr.`Key`>=@minKey AND `Key`<=@maxKey;";
 
             object[] sqlParams =
             {

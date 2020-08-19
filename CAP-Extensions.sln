@@ -15,7 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCore.CAP.Sqlite", "sr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Kafka.Oracle", "samples\Sample.Kafka.Oracle\Sample.Kafka.Oracle.csproj", "{E07F1A99-7A2F-44EC-8E48-5231B035D5D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Kafka.Sqlite", "samples\Sample.Kafka.Sqlite\Sample.Kafka.Sqlite.csproj", "{08D00DEC-C9CA-45A0-83AB-9D77239C30E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Kafka.Sqlite", "samples\Sample.Kafka.Sqlite\Sample.Kafka.Sqlite.csproj", "{08D00DEC-C9CA-45A0-83AB-9D77239C30E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetCore.CAP.Sqlite.Tests", "test\DotNetCore.CAP.Sqlite.Tests\DotNetCore.CAP.Sqlite.Tests.csproj", "{852BD49A-BF51-4A4B-B295-FB18BAD11B59}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetCore.CAP.Oracle.Tests", "test\DotNetCore.CAP.Oracle.Tests\DotNetCore.CAP.Oracle.Tests.csproj", "{B57E31CF-EEE1-4688-8CA7-7FFCAC799F89}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{08D00DEC-C9CA-45A0-83AB-9D77239C30E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08D00DEC-C9CA-45A0-83AB-9D77239C30E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08D00DEC-C9CA-45A0-83AB-9D77239C30E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{852BD49A-BF51-4A4B-B295-FB18BAD11B59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{852BD49A-BF51-4A4B-B295-FB18BAD11B59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{852BD49A-BF51-4A4B-B295-FB18BAD11B59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{852BD49A-BF51-4A4B-B295-FB18BAD11B59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B57E31CF-EEE1-4688-8CA7-7FFCAC799F89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B57E31CF-EEE1-4688-8CA7-7FFCAC799F89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B57E31CF-EEE1-4688-8CA7-7FFCAC799F89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B57E31CF-EEE1-4688-8CA7-7FFCAC799F89}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +60,8 @@ Global
 		{214EBEBA-6145-43DD-9BF9-0620D0861155} = {B2AB1B6C-E211-4997-9983-B045155808B8}
 		{E07F1A99-7A2F-44EC-8E48-5231B035D5D4} = {85771445-EADF-409E-8BB1-341A0A29159A}
 		{08D00DEC-C9CA-45A0-83AB-9D77239C30E8} = {85771445-EADF-409E-8BB1-341A0A29159A}
+		{852BD49A-BF51-4A4B-B295-FB18BAD11B59} = {B470749F-0954-4AD0-94E1-2A189564A083}
+		{B57E31CF-EEE1-4688-8CA7-7FFCAC799F89} = {B470749F-0954-4AD0-94E1-2A189564A083}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {303EE6FD-37EF-4562-B845-74424922A160}
