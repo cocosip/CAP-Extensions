@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30406.217
+MinimumVisualStudioVersion = 15.0.26124.0
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B2AB1B6C-E211-4997-9983-B045155808B8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{B470749F-0954-4AD0-94E1-2A189564A083}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{85771445-EADF-409E-8BB1-341A0A29159A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCore.CAP.Oracle", "src\DotNetCore.CAP.Oracle\DotNetCore.CAP.Oracle.csproj", "{33E21F5B-BBE5-4C42-BBE9-2933CAF3D59A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCore.CAP.Sqlite", "src\DotNetCore.CAP.Sqlite\DotNetCore.CAP.Sqlite.csproj", "{214EBEBA-6145-43DD-9BF9-0620D0861155}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.Kafka.Oracle", "samples\Sample.Kafka.Oracle\Sample.Kafka.Oracle.csproj", "{E07F1A99-7A2F-44EC-8E48-5231B035D5D4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Kafka.Sqlite", "samples\Sample.Kafka.Sqlite\Sample.Kafka.Sqlite.csproj", "{08D00DEC-C9CA-45A0-83AB-9D77239C30E8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{33E21F5B-BBE5-4C42-BBE9-2933CAF3D59A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33E21F5B-BBE5-4C42-BBE9-2933CAF3D59A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33E21F5B-BBE5-4C42-BBE9-2933CAF3D59A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33E21F5B-BBE5-4C42-BBE9-2933CAF3D59A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{214EBEBA-6145-43DD-9BF9-0620D0861155}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{214EBEBA-6145-43DD-9BF9-0620D0861155}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{214EBEBA-6145-43DD-9BF9-0620D0861155}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{214EBEBA-6145-43DD-9BF9-0620D0861155}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E07F1A99-7A2F-44EC-8E48-5231B035D5D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E07F1A99-7A2F-44EC-8E48-5231B035D5D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E07F1A99-7A2F-44EC-8E48-5231B035D5D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E07F1A99-7A2F-44EC-8E48-5231B035D5D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08D00DEC-C9CA-45A0-83AB-9D77239C30E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08D00DEC-C9CA-45A0-83AB-9D77239C30E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08D00DEC-C9CA-45A0-83AB-9D77239C30E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08D00DEC-C9CA-45A0-83AB-9D77239C30E8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{33E21F5B-BBE5-4C42-BBE9-2933CAF3D59A} = {B2AB1B6C-E211-4997-9983-B045155808B8}
+		{214EBEBA-6145-43DD-9BF9-0620D0861155} = {B2AB1B6C-E211-4997-9983-B045155808B8}
+		{E07F1A99-7A2F-44EC-8E48-5231B035D5D4} = {85771445-EADF-409E-8BB1-341A0A29159A}
+		{08D00DEC-C9CA-45A0-83AB-9D77239C30E8} = {85771445-EADF-409E-8BB1-341A0A29159A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {303EE6FD-37EF-4562-B845-74424922A160}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,13 @@
+<Project>
+  <Import Project="version.props" />
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <Authors>virtual</Authors>
+    <Product>CAP-Extensions</Product>
+    <PackageIconUrl>https://raw.githubusercontent.com/dotnetcore/CAP/master/docs/content/img/logo.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/cocosip/CAP-Extensions</PackageProjectUrl>
+    <PackageLicense>https://github.com/cocosip/CAP-Extensions/blob/master/LICENSE</PackageLicense>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/cocosip/CAP-Extensions</RepositoryUrl>
+  </PropertyGroup>
+</Project>
