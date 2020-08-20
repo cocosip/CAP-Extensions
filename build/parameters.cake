@@ -74,18 +74,6 @@ public class BuildParameters
         {
             suffix += "dev-" + Util.CreateStamp();
         }
-        // else
-        // {
-        //     //需要发布到Nuget
-        //     if (ShouldPublishToNuGet && !string.IsNullOrWhiteSpace(versionQuality))
-        //     {
-        //         suffix = string.IsNullOrWhiteSpace(suffix) ? "Pre" : suffix;
-        //     }
-		// 	else
-		// 	{
-		// 	    suffix = "";
-		// 	}
-        // }
         suffix = string.IsNullOrWhiteSpace(suffix) ? null : suffix;
 		
 		context.Information($"Suffix:{suffix}");

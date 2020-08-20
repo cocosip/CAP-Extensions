@@ -4,10 +4,23 @@
     <LangVersion>latest</LangVersion>
     <Authors>virtual</Authors>
     <Product>CAP-Extensions</Product>
-    <PackageIconUrl>https://raw.githubusercontent.com/dotnetcore/CAP/master/docs/content/img/logo.png</PackageIconUrl>
     <PackageProjectUrl>https://github.com/cocosip/CAP-Extensions</PackageProjectUrl>
     <PackageLicense>https://github.com/cocosip/CAP-Extensions/blob/master/LICENSE</PackageLicense>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/cocosip/CAP-Extensions</RepositoryUrl>
   </PropertyGroup>
+  
+    <!-- Using SourceLink -->
+  <PropertyGroup>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	<PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All"/>
+    <PackageReference Include="JetBrains.Annotations" Version="2020.1.0" PrivateAssets="All" />
+  </ItemGroup>
+  
 </Project>
