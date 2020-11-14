@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCore.CAP.Oracle.Tests
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNetCore.CAP.InMemoryMessageQueue", "src\DotNetCore.CAP.InMemoryMessageQueue\DotNetCore.CAP.InMemoryMessageQueue.csproj", "{67FC336D-C821-43E4-AAA0-F1F92EAD16DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.InMemoryMessageQueue.InMemoryStorage", "samples\Sample.InMemoryMessageQueue.InMemoryStorage\Sample.InMemoryMessageQueue.InMemoryStorage.csproj", "{13B99A1C-18C8-4EAA-B947-0EB6D5C168B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sample.InMemoryMessageQueue.InMemoryStorage", "samples\Sample.InMemoryMessageQueue.InMemoryStorage\Sample.InMemoryMessageQueue.InMemoryStorage.csproj", "{13B99A1C-18C8-4EAA-B947-0EB6D5C168B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
