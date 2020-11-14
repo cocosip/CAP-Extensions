@@ -138,6 +138,7 @@ namespace DotNetCore.CAP.Sqlite
             using var connection = new SqliteConnection(_options.Value.ConnectionString);
 
             var sql = $"DELETE FROM `{table}` WHERE `ExpiresAt` < @timeout AND `Id` IN (SELECT `Id` FROM `{table}` LIMIT @batchCount)";
+            //var sql = $"DELETE FROM `{table}` WHERE `ExpiresAt` < @timeout limit @batchCount";
 
             var count = connection.ExecuteNonQuery(
                sql, null,
