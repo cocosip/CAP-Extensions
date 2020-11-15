@@ -55,7 +55,7 @@ namespace DotNetCore.CAP.Sqlite
             {
                 result = readerFunc(reader);
             }
-
+            connection.Close();
             return result;
         }
 

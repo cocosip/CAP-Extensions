@@ -38,7 +38,7 @@ namespace Sample.InMemoryStorage.Sqlite
                         requiring manual troubleshooting. Message name: {failed.Message.GetName()}");
                 };
                 x.UseInMemoryMessageQueue();
-                x.UseSqlite("Data Source=D:\\capdemo.db;");
+                x.UseSqlite("Data Source=cap-test.db;");
             });
             services.AddControllers();
         }

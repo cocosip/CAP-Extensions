@@ -38,9 +38,10 @@ namespace DotNetCore.CAP.Sqlite
                 $" (SELECT COUNT(Id) FROM `{_pubName}` WHERE `StatusName` = 'Failed') AS PublishedFailed," +
                 $" (SELECT COUNT(Id) FROM `{_recName}` WHERE `StatusName` = 'Failed') AS ReceivedFailed;";
             StatisticsDto statistics;
-            using (var connection = new SqliteConnection(_options.ConnectionString))
-            {
 
+            using (var connection = SqliteFactory.Instance.CreateConnection())
+            {
+                connection.ConnectionString = _options.ConnectionString;
                 statistics = connection.ExecuteReader(sql, reader =>
                 {
                     var statisticsDto = new StatisticsDto();
@@ -93,8 +94,8 @@ namespace DotNetCore.CAP.Sqlite
                 new SqliteParameter("@Limit", queryDto.PageSize)
             };
 
-
-            using var connection = new SqliteConnection(_options.ConnectionString);
+            using var connection = SqliteFactory.Instance.CreateConnection();
+            connection.ConnectionString = _options.ConnectionString;
             return connection.ExecuteReader(sqlQuery, reader =>
             {
                 var messages = new List<MessageDto>();
@@ -156,7 +157,8 @@ namespace DotNetCore.CAP.Sqlite
         {
             var sqlQuery = $"SELECT COUNT(`Id`) FROM `{tableName}` WHERE `StatusName` = @state";
 
-            using var connection = new SqliteConnection(_options.ConnectionString);
+            using var connection = SqliteFactory.Instance.CreateConnection();
+            connection.ConnectionString = _options.ConnectionString;
             var count = connection.ExecuteScalar<int>(sqlQuery, new SqliteParameter("@state", statusName));
             return count;
         }
@@ -194,8 +196,10 @@ namespace DotNetCore.CAP.Sqlite
             };
 
             Dictionary<string, int> valuesMap;
-            using (var connection = new SqliteConnection(_options.ConnectionString))
+
+            using (var connection = SqliteFactory.Instance.CreateConnection())
             {
+                connection.ConnectionString = _options.ConnectionString;
                 valuesMap = connection.ExecuteReader(sqlQuery, reader =>
                 {
                     var dictionary = new Dictionary<string, int>();
@@ -229,7 +233,8 @@ namespace DotNetCore.CAP.Sqlite
         {
             var sql = $"SELECT `Id` AS `DbId`, `Content`, `Added`, `ExpiresAt`, `Retries` FROM `{tableName}` WHERE `Id`={id}";
 
-            using var connection = new SqliteConnection(_options.ConnectionString);
+            using var connection = SqliteFactory.Instance.CreateConnection();
+            connection.ConnectionString = _options.ConnectionString;
             var mediumMessage = connection.ExecuteReader(sql, reader =>
             {
                 MediumMessage message = null;

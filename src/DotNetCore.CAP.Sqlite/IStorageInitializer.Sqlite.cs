@@ -26,12 +26,12 @@ namespace DotNetCore.CAP.Sqlite
 
         public virtual string GetPublishedTableName()
         {
-            return $"{_options.Value.Schema}.Published";
+            return $"{_options.Value.Schema}.published";
         }
 
         public virtual string GetReceivedTableName()
         {
-            return $"{_options.Value.Schema}.Received";
+            return $"{_options.Value.Schema}.received";
         }
 
         public async Task InitializeAsync(CancellationToken cancellationToken)

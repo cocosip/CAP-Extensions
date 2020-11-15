@@ -72,7 +72,8 @@ namespace DotNetCore.CAP.Sqlite
 
             if (dbTransaction == null)
             {
-                using var connection = new SqliteConnection(_options.Value.ConnectionString);
+                using var connection = SqliteFactory.Instance.CreateConnection();
+                connection.ConnectionString = _options.Value.ConnectionString;
                 connection.ExecuteNonQuery(sql, sqlParams: sqlParams);
             }
             else
@@ -135,7 +136,8 @@ namespace DotNetCore.CAP.Sqlite
         public async Task<int> DeleteExpiresAsync(string table, DateTime timeout, int batchCount = 1000,
             CancellationToken token = default)
         {
-            using var connection = new SqliteConnection(_options.Value.ConnectionString);
+            using var connection = SqliteFactory.Instance.CreateConnection();
+            connection.ConnectionString = _options.Value.ConnectionString;
 
             var sql = $"DELETE FROM `{table}` WHERE `ExpiresAt` < @timeout AND `Id` IN (SELECT `Id` FROM `{table}` LIMIT @batchCount)";
             //var sql = $"DELETE FROM `{table}` WHERE `ExpiresAt` < @timeout limit @batchCount";
@@ -170,7 +172,9 @@ namespace DotNetCore.CAP.Sqlite
                 new SqliteParameter("@Id", long.Parse(message.DbId))
             };
 
-            using var connection = new SqliteConnection(_options.Value.ConnectionString);
+            using var connection = SqliteFactory.Instance.CreateConnection();
+            connection.ConnectionString = _options.Value.ConnectionString;
+
             connection.ExecuteNonQuery(sql, sqlParams: sqlParams);
 
             await Task.CompletedTask;
@@ -180,7 +184,8 @@ namespace DotNetCore.CAP.Sqlite
         {
             var sql = $"INSERT INTO `{_recName}` (`Id`,`Version`,`Name`,`Group`,`Content`,`Retries`,`Added`,`ExpiresAt`,`StatusName`)" +
                 $" VALUES (@Id,'{_capOptions.Value.Version}',@Name,@Group,@Content,@Retries,@Added,@ExpiresAt,@StatusName) ";
-            using var connection = new SqliteConnection(_options.Value.ConnectionString);
+            using var connection = SqliteFactory.Instance.CreateConnection();
+            connection.ConnectionString = _options.Value.ConnectionString;
             connection.ExecuteNonQuery(sql, sqlParams: sqlParams);
         }
 
@@ -191,7 +196,8 @@ namespace DotNetCore.CAP.Sqlite
                 $"AND `Version`='{_capOptions.Value.Version}' AND `Added`<'{fourMinAgo}' " +
                 $"AND (`StatusName`='{StatusName.Failed}' OR `StatusName`='{StatusName.Scheduled}') LIMIT 200";
 
-            using var connection = new SqliteConnection(_options.Value.ConnectionString);
+            using var connection = SqliteFactory.Instance.CreateConnection();
+            connection.ConnectionString = _options.Value.ConnectionString;
             var result = connection.ExecuteReader(sql, reader =>
             {
                 var messages = new List<MediumMessage>();
