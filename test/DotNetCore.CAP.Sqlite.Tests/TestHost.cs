@@ -1,4 +1,5 @@
 ﻿using DotNetCore.CAP.Persistence;
+using DotNetCore.CAP.Serialization;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
@@ -36,6 +37,7 @@ namespace DotNetCore.CAP.Sqlite.Tests
             });
             services.AddSingleton<SqliteDataStorage>();
             services.AddSingleton<IStorageInitializer, SqliteStorageInitializer>();
+            services.AddSingleton<ISerializer, JsonUtf8Serializer>();
             _services = services;
         }
 

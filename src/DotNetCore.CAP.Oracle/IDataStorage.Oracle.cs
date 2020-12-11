@@ -20,19 +20,23 @@ namespace DotNetCore.CAP.Oracle
     public class OracleDataStorage : IDataStorage
     {
         private readonly IOptions<CapOptions> _capOptions;
-        private readonly IStorageInitializer _initializer;
         private readonly IOptions<OracleOptions> _options;
+        private readonly IStorageInitializer _initializer;
+        private readonly ISerializer _serializer;
+
         private readonly string _pubName;
         private readonly string _recName;
 
         public OracleDataStorage(
             IOptions<OracleOptions> options,
             IOptions<CapOptions> capOptions,
-            IStorageInitializer initializer)
+            IStorageInitializer initializer,
+            ISerializer serializer)
         {
             _capOptions = capOptions;
-            _initializer = initializer;
             _options = options;
+            _initializer = initializer;
+            _serializer = serializer;
             _pubName = initializer.GetPublishedTableName();
             _recName = initializer.GetReceivedTableName();
         }
@@ -52,11 +56,12 @@ namespace DotNetCore.CAP.Oracle
             {
                 DbId = content.GetId(),
                 Origin = content,
-                Content = StringSerializer.Serialize(content),
+                Content = _serializer.Serialize(content),
                 Added = DateTime.Now,
                 ExpiresAt = null,
                 Retries = 0
             };
+
 
             object[] sqlParams =
             {
@@ -129,7 +134,7 @@ namespace DotNetCore.CAP.Oracle
                 new OracleParameter(":Group1", group),
                 new OracleParameter(":Content",OracleDbType.Clob)
                 {
-                    Value = StringSerializer.Serialize(mdMessage.Origin)
+                    Value = _serializer.Serialize(mdMessage.Origin)
                 },
                 new OracleParameter(":Retries", mdMessage.Retries),
                 new OracleParameter(":Added", mdMessage.Added),
@@ -207,7 +212,7 @@ namespace DotNetCore.CAP.Oracle
                     messages.Add(new MediumMessage
                     {
                         DbId = reader.GetInt64(0).ToString(),
-                        Origin = StringSerializer.DeSerialize(reader.GetString(1)),
+                        Origin = _serializer.Deserialize(reader.GetString(1)),
                         Retries = reader.GetInt32(2),
                         Added = reader.GetDateTime(3)
                     });

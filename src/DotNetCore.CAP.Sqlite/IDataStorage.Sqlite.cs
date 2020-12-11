@@ -20,19 +20,22 @@ namespace DotNetCore.CAP.Sqlite
     public class SqliteDataStorage : IDataStorage
     {
         private readonly IOptions<CapOptions> _capOptions;
-        private readonly IStorageInitializer _initializer;
         private readonly IOptions<SqliteOptions> _options;
+        private readonly IStorageInitializer _initializer;
+        private readonly ISerializer _serializer;
         private readonly string _pubName;
         private readonly string _recName;
 
         public SqliteDataStorage(
             IOptions<SqliteOptions> options,
             IOptions<CapOptions> capOptions,
-            IStorageInitializer initializer)
+            IStorageInitializer initializer,
+            ISerializer serializer)
         {
             _capOptions = capOptions;
-            _initializer = initializer;
             _options = options;
+            _initializer = initializer;
+            _serializer = serializer;
             _pubName = initializer.GetPublishedTableName();
             _recName = initializer.GetReceivedTableName();
         }
@@ -52,7 +55,7 @@ namespace DotNetCore.CAP.Sqlite
             {
                 DbId = content.GetId(),
                 Origin = content,
-                Content = StringSerializer.Serialize(content),
+                Content = _serializer.Serialize(content),
                 Added = DateTime.Now,
                 ExpiresAt = null,
                 Retries = 0
@@ -122,7 +125,7 @@ namespace DotNetCore.CAP.Sqlite
                 new SqliteParameter("@Id", long.Parse(mdMessage.DbId)),
                 new SqliteParameter("@Name", name),
                 new SqliteParameter("@Group", group),
-                new SqliteParameter("@Content",StringSerializer.Serialize(mdMessage.Origin)),
+                new SqliteParameter("@Content",_serializer.Serialize(mdMessage.Origin)),
                 new SqliteParameter("@Retries", mdMessage.Retries),
                 new SqliteParameter("@Added", mdMessage.Added),
                 new SqliteParameter("@ExpiresAt", mdMessage.ExpiresAt.HasValue ? (object) mdMessage.ExpiresAt.Value : DBNull.Value),
@@ -206,7 +209,7 @@ namespace DotNetCore.CAP.Sqlite
                     messages.Add(new MediumMessage
                     {
                         DbId = reader.GetInt64(0).ToString(),
-                        Origin = StringSerializer.DeSerialize(reader.GetString(1)),
+                        Origin = _serializer.Deserialize(reader.GetString(1)),
                         Retries = reader.GetInt32(2),
                         Added = reader.GetDateTime(3)
                     });

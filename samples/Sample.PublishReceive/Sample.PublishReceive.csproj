@@ -10,7 +10,6 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\..\src\DotNetCore.CAP.InMemoryMessageQueue\DotNetCore.CAP.InMemoryMessageQueue.csproj" />
     <ProjectReference Include="..\..\src\DotNetCore.CAP.Sqlite\DotNetCore.CAP.Sqlite.csproj" />
   </ItemGroup>
 

@@ -1,6 +1,7 @@
 ﻿using DotNetCore.CAP.Internal;
 using DotNetCore.CAP.Messages;
 using DotNetCore.CAP.Persistence;
+using DotNetCore.CAP.Serialization;
 using Microsoft.Extensions.Options;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -18,7 +19,8 @@ namespace DotNetCore.CAP.Sqlite.Tests
             var options = GetService<IOptions<SqliteOptions>>();
             var capOptions = GetService<IOptions<CapOptions>>();
             var initializer = GetService<IStorageInitializer>();
-            _storage = new SqliteDataStorage(options, capOptions, initializer);
+            var serializer = GetService<ISerializer>();
+            _storage = new SqliteDataStorage(options, capOptions, initializer, serializer);
         }
 
         [Fact]

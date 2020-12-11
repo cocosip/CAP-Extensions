@@ -38,7 +38,7 @@ namespace Sample.Kafka.Sqlite
                 x.UseKafka(k =>
                 {
                     k.Servers = "192.168.0.38:9092,192.168.0.39:9092,192.168.0.87:9092";
-                    k.MainConfig.GetOrAdd("allow.auto.create.topics", "true");
+                    k.MainConfig.TryAdd("allow.auto.create.topics", "true");
                 });
                 x.UseDashboard();
                 x.FailedRetryCount = 5;
@@ -71,7 +71,7 @@ namespace Sample.Kafka.Sqlite
             });
 
 
-           
+
         }
     }
 }
